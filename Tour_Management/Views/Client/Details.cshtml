@@ -1,0 +1,36 @@
+﻿@model Tour_Management.Models.ViewModels.ClientVM
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card m-5 mt-3">
+    <div class="card-header">
+        <h1 class="display-5 text-center">Booking Details</h1>
+    </div>
+    <div class="row card-body">
+        <div class="col-6 p-4">
+            <img src="@Html.DisplayFor(model => model.Picture)" 
+                 style="border-radius: 10%; width:400px;" />
+        </div>
+        <div class="col-6 ">
+            <h3 class="display-6">Name: @Html.DisplayFor(model => model.ClientName)</h3>
+            <h4>Date of Birth: @Html.DisplayFor(model => model.BirthDate)</h4>
+            <h4>Age: @Html.DisplayFor(model => model.Age)</h4>
+            <h4>Marital Status: @Html.DisplayFor(model => model.MaritalStatus)</h4>
+            <h4>List of Tourist Spot</h4>
+            @*<ul>
+                @foreach(var item in Model.SpotList)
+                <li>
+                    @Html.Action(new {id=item})
+                </li>
+            </ul>*@
+
+        </div>
+    </div>
+    <div class="card-footer">
+        <a style="text-decoration: none;" href="@Url.Action("Index")"><i class="fa fa-arrow-circle-o-left"></i> Back to List</a> | 
+        <a style="text-decoration: none;" href="@Url.Action("Edit", new { id = Model.ClientId })"><i class="fa fa-edit"></i> Edit</a>
+    </div>
+</div>

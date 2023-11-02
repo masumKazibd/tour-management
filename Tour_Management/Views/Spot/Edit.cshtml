@@ -1,0 +1,39 @@
+﻿@model Tour_Management.Models.Spot
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card mt-2 mb-2">
+    <div class="card-header">
+        <h3>New Spot</h3>
+        <p class="text-muted">We make sure your everything tour runs smoothly</p>
+    </div>
+    <div class="card-body row">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(x=>x.SpotId)
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.SpotName, htmlAttributes: new { @class = "control-label col-md-2 col-3" })
+                    <div class="col-md-8 col-7">
+                        @Html.EditorFor(x => x.SpotName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(x => x.SpotName, "", new { @class = "text-danger col-2" })
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <input type="submit" value="Save Data" class="btn btn-primary btn-lg" />
+                </div>
+            </div>
+        }
+    </div>
+    <div class="card-footer">
+        <div class="d-flex justify-content-start">
+            <a href="@Url.Action("Index")" id="bnCreate btn-primary btn-sm" class="btn"><i class="fa fa-arrow-circle-left"></i> Back to List</a>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,40 @@
+﻿@*@model IEnumerable<Tour_Management.Models>*@
+@model IEnumerable<Tour_Management.Models.Spot>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="card mt-2 mb-2">
+    <div class="card-header">
+        <h3>Tour Management System</h3>
+        <p class="text-muted">that make sure your everything tour runs smoothly</p>
+    </div>
+    <div class="card-body row">
+        <div class="card col  m-2 ">
+                <h4 class="text-center mt-1">Total Client</h4>
+            <hr />
+            <div class="card-body">
+                <h1 class="text-muted text-center">19</h1>
+            </div>
+            <a class="d-flex justify-content-end m-1" href="@Url.Action("Index", "Client")" style="text-decoration: none; color: black;"> <i class="fa fa-list"></i></a>
+        </div>
+        <div class="card col m-2">
+            <h4 class="text-center mt-1">Total Spot</h4>
+            <hr />
+            <div class="card-body">
+                <h1 class="text-muted text-center">@Model.Count()</h1>
+            </div>
+            <a class="d-flex justify-content-end m-1" href="@Url.Action("Index", "Spot")" style="text-decoration: none; color: black;"> <i class="fa fa-list"></i></a>
+        </div>
+        <div class="card col m-2">
+            <h4 class="text-center mt-1">Total Booking</h4>
+            <hr />
+            <div class="card-body">
+                <h1 class="text-muted text-center">27</h1>
+            </div>
+            <a class="d-flex justify-content-end m-1" href="#" style="text-decoration: none; color: black;"> <i class="fa fa-list"></i></a>
+        </div>
+    </div>
+
+</div>
+

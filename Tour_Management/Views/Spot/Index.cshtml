@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Tour_Management.Models.Spot>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card mt-2 mb-2">
+    <div class="card-header">
+        <h3>Spot List</h3>
+        <p class="text-muted">that make sure your everything tour runs smoothly</p>
+        <div class="d-flex justify-content-end">
+            <a href="@Url.Action("Create", "Spot")" id="bnCreate btn-primary btn-sm" class="btn"><i class="fa fa-plus"></i> New Spot</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped table-bordered col-8">
+            <tr>
+                <th class="col-6">
+                    @Html.DisplayNameFor(x => x.SpotName)
+                </th>
+                <th class="col-2">
+                    Action
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpotName)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", new {id=item.SpotId})" class="btn btn-success btn-sm">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", new {id=item.SpotId})" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <div class="card-footer">
+
+    </div>
+</div>
+
