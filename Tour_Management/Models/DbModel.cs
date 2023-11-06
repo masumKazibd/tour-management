@@ -49,6 +49,7 @@ namespace Tour_Management.Models
 
         //nev
         public virtual Client Client { get; set; }
+
         public virtual Spot Spot { get; set; }
 
     }

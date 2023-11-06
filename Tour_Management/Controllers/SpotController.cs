@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using Tour_Management.Models;
 
 namespace Tour_Management.Controllers
@@ -60,5 +63,39 @@ namespace Tour_Management.Controllers
             }
             return View(spot);
         }
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            Spot spot = db.Spots.Find(id);
+            if (spot == null)
+            {
+                return HttpNotFound();
+            }
+            return View(spot);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DoDelete(int id)
+        {
+            Spot spot = db.Spots.Find(id);
+            db.Spots.Remove(spot);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DoDelete(int id)
+        //{
+        //    Sports sports = db.Sports.Find(id);
+        //    db.Sports.Remove(sports);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
     }
 }
