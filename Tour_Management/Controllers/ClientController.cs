@@ -90,5 +90,76 @@ namespace Tour_Management.Controllers
             }
             return View(clientVM);
         }
+        public ActionResult Edit(int? id)
+        {
+            Client client = db.Clients.First(x => x.ClientId == id);
+            var clientSpots = db.BookingEntries.Where(x => x.ClientId == id).ToList();
+            ClientVM clientVM = new ClientVM()
+            {
+                ClientId = client.ClientId,
+                ClientName = client.ClientName,
+                Age = client.Age,
+                BirthDate = client.BirthDate,
+                Picture = client.Picture,
+                MaritalStatus = client.MaritalStatus
+            };
+            if (clientSpots.Count() > 0)
+            {
+                foreach (var item in clientSpots)
+                {
+                    clientVM.SpotList.Add(item.SpotId);
+                }
+            }
+            return View(clientVM);
+        }
+        [HttpPost]
+        public ActionResult Edit(ClientVM clientVM, int[] spotId)
+        {
+            if (ModelState.IsValid)
+            {
+                Client client = new Client()
+                {
+                    ClientId = clientVM.ClientId,
+                    ClientName = clientVM.ClientName,
+                    BirthDate = clientVM.BirthDate,
+                    Age = clientVM.Age,
+                    MaritalStatus = clientVM.MaritalStatus
+                };
+
+                HttpPostedFileBase file = clientVM.PictureFile;
+                if (file != null)
+                {
+                    string filePath = Path.Combine("/Images/", Guid.NewGuid().ToString() + Path.GetExtension(file.FileName));
+                    file.SaveAs(Server.MapPath(filePath));
+                    client.Picture = filePath;
+                }
+                else
+                {
+                    client.Picture = "";//Home work...
+                }
+
+                var existsSpotEntry = db.BookingEntries.Where(x => x.ClientId == client.ClientId).ToList();
+                //For delete spot
+                foreach (var bookingEntry in existsSpotEntry)
+                {
+                    db.BookingEntries.Remove(bookingEntry);
+                }
+                //Add Spot
+                foreach (var item in spotId)
+                {
+                    BookingEntry bookingEntry = new BookingEntry()
+                    {
+                        ClientId = client.ClientId,
+                        SpotId = item
+                    };
+                    db.BookingEntries.Add(bookingEntry);
+                }
+                db.Entry(client).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
     }
 }

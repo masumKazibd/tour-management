@@ -1,78 +1,96 @@
 ﻿@model Tour_Management.Models.ViewModels.ClientVM
-
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<div class="card mt-2 mb-2">
+    <div class="card-header">
+        <h3>Edit Bookings</h3>
+        <p class="text-muted">Edit your tourist information or destination</p>
+    </div>
+    <div class="card-body row">
+        @using (Html.BeginForm("Edit", "Client", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken();
+            @Html.HiddenFor(x=>x.ClientId)
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ClientVM</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.ClientId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ClientId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ClientId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <div class="row">
+                <div class="col-6">
+                    <h1>Client Information</h1>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row mb-2">
+                        <div class="col-3">
+                            @Html.LabelFor(x => x.ClientName, htmlAttributes: new { @class = "col-form-label" })
+                        </div>
+                        <div class="col-7">
+                            @Html.TextBoxFor(x => x.ClientName, new { @class = "form-control" })
+                        </div>
+                        <div class="col-2">
+                            @Html.ValidationMessageFor(x => x.ClientName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        @Html.LabelFor(x => x.BirthDate, htmlAttributes: new { @class = "col-form-label col-3" })
+                        <div class="col-7">
+                            @*@Html.TextBoxFor(x => x.BirthDate, new { @class = "form-control", type = "date" })*@
+                            @Html.EditorFor(x=>x.BirthDate, "{0:yyyy-MM-dd}", new {htmlAttributes = new {@class = "form-control", type="date"}})
+                        </div>
+                        <div class="col-2">
+                            @Html.ValidationMessageFor(x => x.BirthDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        @Html.LabelFor(x => x.Age, htmlAttributes: new { @class = "col-form-label col-3" })
+                        <div class="col-7">
+                            @Html.TextBoxFor(x => x.Age, new { @class = "form-control" })
+                        </div>
+                        <div class="col-2">
+                            @Html.ValidationMessageFor(x => x.Age, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        @Html.LabelFor(x => x.PictureFile, htmlAttributes: new { @class = "col-form-label col-3" })
+                        <div class="col-7">
+                            <img src="@Html.DisplayFor(x=>x.PictureFile)" />
+                            @Html.TextBoxFor(x => x.PictureFile, new { @class = "form-control", type = "file" })
+                        </div>
+                        <div class="col-2">
+                            @Html.ValidationMessageFor(x => x.PictureFile, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        @Html.LabelFor(X => X.MaritalStatus, htmlAttributes: new { @class = "col-form-label col-3" })
+                        <div class="col-7">
+                            @Html.CheckBoxFor(x => x.MaritalStatus)
+                        </div>
+                        <div class="col-2">
+                            @Html.ValidationMessageFor(x => x.MaritalStatus, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <h2>Select Spot</h2>
+                    <div class="d-flex justify-content-end mb-3">
+                        <a href="#" id="btnPlus" class="btn btn-warning" style="margin-right: 2px;"><i class="fa fa-plus"></i></a>
+                    </div>
+                    <div id="spotContainer">
+                        @foreach (var item in Model.SpotList)
+                        {
+                            @Html.Action("AddNewSpot", "Client", new {id=item})
+                        }
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ClientName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ClientName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ClientName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Picture, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaritalStatus, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.MaritalStatus)
-                    @Html.ValidationMessageFor(model => model.MaritalStatus, "", new { @class = "text-danger" })
+                </div>
+                <div class="d-flex justify-content-end">
+                    <input type="submit" value="Update Data" class="btn btn-success btn-lg" />
                 </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+        }
+    </div>
+    <div class="card-footer">
+        <div class="d-flex justify-content-start">
+            <a href="@Url.Action("Index")" id="bnCreate btn-primary btn-sm" class="btn"><i class="fa fa-arrow-circle-left"></i> Back to List</a>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+</div> 
