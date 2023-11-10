@@ -10,10 +10,12 @@ User Experiences Include:
    ![image](https://github.com/masumKazibd/tour-management/assets/88852649/6c9d73b2-5706-432b-8137-a017f854c483)
 
 3. Client Management: Designed a user-friendly interface to manage clients, allowing administrators to list clients, create new user profiles, update existing information, and remove user profiles when necessary.
-   ![image](https://github.com/masumKazibd/tour-management/assets/88852649/6d204420-b398-4cae-85a1-66b79eeb5157)
+![image](https://github.com/masumKazibd/tour-management/assets/88852649/6d26285d-6ec2-4ad6-8b02-d0f5daa0b9a1)
 
 5. Spot Management: Developed features for adding, deleting, and updating tour spots, ensuring tour destinations remain up-to-date and aligned with traveler preferences.
-   ![image](https://github.com/masumKazibd/tour-management/assets/88852649/cfbbcd1d-b2dd-446f-aa5a-19ec448d85cc)
+
+![image](https://github.com/masumKazibd/tour-management/assets/88852649/d39a645b-3bca-4320-bc88-b2eed4fc0709)
+
 
 7. Efficient Search Functionality: Implemented powerful search functionality for clients and tour spots, enabling quick and precise results that save time and enhance user convenience.
 8. Seamless Booking Process: Streamlined the booking process, making it user-friendly and intuitive. Travelers can easily search for tours, select their preferences, and make bookings with confidence.
