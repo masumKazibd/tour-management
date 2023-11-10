@@ -24,8 +24,4 @@ User Experiences Include:
 10. Effective Error Handling: Integrated robust error handling mechanisms to guide users in case they encounter issues during the booking process, ensuring a smooth and reliable user experience.
     ![image](https://github.com/masumKazibd/tour-management/assets/88852649/19d98962-632f-433c-b46a-d630c684e002)
 
-<<<<<<< HEAD
-12. Secure Admin Login: Implemented a secure admin login system to protect sensitive data and system settings, ensuring that only authorized personnel can access the system's administrative features.
-=======
-12. Secure Admin Login: Implemented a secure admin login system to protect sensitive data and system settings, ensuring that only authorized personnel can access the system's administrative features.
->>>>>>> 5094cf6abf2575cba4f757c944694e60aaf47cf7
+11. Secure Admin Login: Implemented a secure admin login system to protect sensitive data and system settings, ensuring that only authorized personnel can access the system's administrative features.
