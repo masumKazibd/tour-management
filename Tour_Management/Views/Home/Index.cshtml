@@ -1,6 +1,4 @@
-﻿@*@model IEnumerable<Tour_Management.Models>*@
-@model IEnumerable<Tour_Management.Models.Spot>
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
@@ -14,7 +12,7 @@
                 <h4 class="text-center mt-1">Total Client</h4>
             <hr />
             <div class="card-body">
-                <h1 class="text-muted text-center">19</h1>
+                <h1 class="text-muted text-center">@ViewBag.tClient</h1>
             </div>
             <a class="d-flex justify-content-end m-1" href="@Url.Action("Index", "Client")" style="text-decoration: none; color: black;"> <i class="fa fa-list"></i></a>
         </div>
@@ -22,7 +20,7 @@
             <h4 class="text-center mt-1">Total Spot</h4>
             <hr />
             <div class="card-body">
-                <h1 class="text-muted text-center">@Model.Count()</h1>
+                <h1 class="text-muted text-center">@ViewBag.tSpot</h1>
             </div>
             <a class="d-flex justify-content-end m-1" href="@Url.Action("Index", "Spot")" style="text-decoration: none; color: black;"> <i class="fa fa-list"></i></a>
         </div>
@@ -30,7 +28,7 @@
             <h4 class="text-center mt-1">Total Booking</h4>
             <hr />
             <div class="card-body">
-                <h1 class="text-muted text-center">27</h1>
+                <h1 class="text-muted text-center">@ViewBag.tBookings</h1>
             </div>
             <a class="d-flex justify-content-end m-1" href="#" style="text-decoration: none; color: black;"> <i class="fa fa-list"></i></a>
         </div>

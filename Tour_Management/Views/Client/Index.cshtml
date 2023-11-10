@@ -43,7 +43,7 @@
                         <td>@Html.DisplayFor(x => item.ClientName)</td>
                         <td>@Html.DisplayFor(x => item.Age)</td>
                         <td>@Html.DisplayFor(x => item.MaritalStatus)</td>
-                        <td><img src="@item.Picture" style="height: 30px; width: 30px; border-radius: 25px;"/></td>
+                        <td><img src="@item.Picture" style="height: 30px; width: 30px; border-radius: 25px;" /></td>
                         <td>
                             <a href="@Url.Action("Edit","Client", new {id=item.ClientId})" class="btn btn-success btn-sm me-2"><i class="fa fa-edit"></i></a>
                             <a href="@Url.Action("Delete","Client", new {id=item.ClientId})" class="btn btn-danger btn-sm me-2"><i class="fa fa-trash"></i></a>
@@ -54,5 +54,17 @@
             </tbody>
 
         </table>
+    </div>
+    <div class="card-footer">
+        <div class="d-flex justify-content-end">
+            <ul class="pagination pagination-sm">
+                @for (int i = 1; i <= ViewBag.totalPages; i++)
+                {
+                    <li class='page-item @(ViewBag.currentPage==i?"active":"")'>
+                        @Html.ActionLink(i.ToString(), "Index", new { page = i }, new { @class = "page-link" })
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
 </div>

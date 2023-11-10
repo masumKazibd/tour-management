@@ -14,9 +14,12 @@ namespace Tour_Management.Controllers
     {
         private TravelDbContext db = new TravelDbContext();
         // GET: Spot
-        public ActionResult Index()
+        public ActionResult Index(int page=1)
         {
-            return View(db.Spots.ToList());
+            ViewBag.totalPages = (int)Math.Ceiling((double)db.Spots.Count() / 5);
+            ViewBag.currentPage = page;
+            return View(db.Spots.OrderBy(x=>x.SpotId).Skip((page-1)*5).Take(5).ToList());
+            //return View(db.Spots.ToList());
         }
         public ActionResult Details()
         {

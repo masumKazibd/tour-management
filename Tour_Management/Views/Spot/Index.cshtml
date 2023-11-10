@@ -41,7 +41,16 @@
     </div>
 
     <div class="card-footer">
-
+        <div class="d-flex justify-content-end">
+            <ul class="pagination pagination-sm">
+                @for (int i = 1; i <= ViewBag.totalPages; i++)
+                {
+                    <li class='page-item @(ViewBag.currentPage==i?"active":"")'>
+                        @Html.ActionLink(i.ToString(), "Index", new { page = i }, new { @class = "page-link" })
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
 </div>
 

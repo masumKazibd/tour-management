@@ -13,7 +13,10 @@ namespace Tour_Management.Controllers.Home
         // GET: Home
         public ActionResult Index()
         {
-            return View(db.Spots.ToList());
+            ViewBag.tClient = db.Clients.Count();
+            ViewBag.tSpot = db.Spots.Count();
+            ViewBag.tBookings = db.BookingEntries.Count();
+            return View();
         }
     }
 }
